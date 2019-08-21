@@ -36,5 +36,9 @@ bool operator==(const PtrDetails<T> &ob1,
                 const PtrDetails<T> &ob2)
 {
     // TODO: Implement operator==
-
+    if(ob1.memPtr == ob2.memPtr && ob1.arraySize == ob2.arraySize)
+    {
+        return true;
+    }
+    return false;
 }
