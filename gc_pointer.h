@@ -142,6 +142,9 @@ Pointer<T, size>::~Pointer(){
     
     // TODO: Implement Pointer destructor
     // Lab: New and Delete Project Lab
+    typename std::list<PtrDetails<T> >::iterator p = findPtrInfo(addr);
+    p->refcount--;
+    if(p->refcount == 0)collect();
 }
 
 // Collect garbage. Returns true if at least
