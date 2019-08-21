@@ -203,6 +203,16 @@ Pointer<T, size> &Pointer<T, size>::operator=(Pointer &rv){
 
     // TODO: Implement operator==
     // LAB: Smart Pointer Project Lab
+    if(*this == rv)return *this;
+    typename std::list<PtrDetails<T> >::iterator p = findPtrInfo(addr);
+    p->refcount--;
+    if(p->refcount == 0)collect();
+    p = findPtrInfo(rv.addr);
+    p->refcount++;
+	this->addr = rv.addr;
+    this->isArray = rv.isArray;
+    this->arraySize = rv.arraySize;
+    return *this;
 
 }
 
