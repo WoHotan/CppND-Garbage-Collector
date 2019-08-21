@@ -107,6 +107,18 @@ Pointer<T,size>::Pointer(T *t){
     first = false;
 
     // TODO: Implement Pointer constructor
+    typename std::list<PtrDetails<T>>::iterator p = findPtrInfo(t);
+    if(p == refContainer.end()){
+        PtrDetails<T> newPtr(t, size);
+        if(size > 0){
+            isArray = true;
+            arraySize = size;
+        }
+        refContainer.push_back(newPtr);
+    }else{
+        p->refcount++;
+    }
+    this->addr = t;
     // Lab: Smart Pointer Project Lab
 
 }
